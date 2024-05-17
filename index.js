@@ -4,7 +4,6 @@ const express = require('express')
 const cors = require('cors')
 const loginRoute = require('./routes/loginRoute')
 
-
 const app = express()
 const port = 4000
 
@@ -26,9 +25,8 @@ db.on("error", function (err) {
 
 app.use('/api/login', loginRoute)
 
+
+
 app.listen(port, () => {
   console.log(`Server running on port ${port}`)
 })
-
-
-// r9H8K5muVCFMeAa5
