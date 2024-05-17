@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const express = require('express')
 const cors = require('cors')
-const loginRoute = require('./routes/loginRoute')
+const signinRoute = require('./routes/signinRoute')
 
 const app = express()
 const port = 4000
@@ -23,7 +23,7 @@ db.on("error", function (err) {
 });
 
 
-app.use('/api/login', loginRoute)
+app.use('/api/login', signinRoute)
 
 
 
