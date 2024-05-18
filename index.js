@@ -23,7 +23,7 @@ db.on("error", function (err) {
 });
 
 
-app.use('/api/login', signinRoute)
+app.use('/api/auth', signinRoute)
 
 
 
