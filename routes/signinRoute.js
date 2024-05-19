@@ -1,6 +1,5 @@
 const argon2 = require('argon2')
 const express = require('express')
-const validator = require('validator');
 const jwt = require('jsonwebtoken')
 const signinModel = require('../models/SigninSchema')
 const router = express.Router()
@@ -12,14 +11,6 @@ const generateToken = (user) => {
 
 router.post('/register', async (req, res) => {
   const { email, password } = req.body;
-
-  if(!email || !validator.isEmail(email)) {
-    return res.status(400).json({ error: 'Invalid email' })
-  }
-
-  if(!password || password.length < 4) { 
-    return res.status(400).json({ error: 'Password must be more than four characters' })
-   }
 
   try {
     const existingUser = await signinModel.findOne({ email })
@@ -34,7 +25,7 @@ router.post('/register', async (req, res) => {
 
     const token = generateToken(newUser)
     
-    res.status(201).json({ message: 'User registered successfuly', token })
+    res.status(201).json({ message: 'Singned in successfuly', token })
     console.log(token)
   } catch (err) { 
     console.error('Error registering user:', err);
