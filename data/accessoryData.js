@@ -22,7 +22,7 @@ const accessorriesData = [
       },
 
       {
-        "name": "Sunglasses",
+        "name": "Skydiving Sunglasses",
         "price": 59.99,
         "category": "Sunglasses",
         "image_url": "/sunglasses-1.png"
@@ -35,28 +35,28 @@ const accessorriesData = [
       },
       {
         "name": "Beach Sunglasses",
-        "price": 29.99,
+        "price": 40.99,
         "category": "Sunglasses",
         "image_url": "/sunglasses-3.png"
       },
 
       {
-        "name": "Beach Sunglasses",
-        "price": 29.99,
-        "category": "Sunglasses",
-        "image_url": "/sunglasses-3.png"
+        "name": "Leather Brown Wristwatch",
+        "price": 90.99,
+        "category": "Watches",
+        "image_url": "/brown-wristwatch.jpg"
       },
       {
-        "name": "Beach Sunglasses",
-        "price": 29.99,
-        "category": "Sunglasses",
-        "image_url": "/sunglasses-3.png"
+        "name": "Silver Pocket Watch",
+        "price": 150.99,
+        "category": "Watches",
+        "image_url": "/silver-pocket_watch.png"
       },
       {
-        "name": "Beach Sunglasses",
-        "price": 29.99,
-        "category": "Sunglasses",
-        "image_url": "/sunglasses-3.png"
+        "name": "Pocket WatchClock",
+        "price": 200.99,
+        "category": "Watches",
+        "image_url": "/pocket-watch-clock.png"
       }
 
 ]
