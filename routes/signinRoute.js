@@ -26,7 +26,7 @@ router.post('/register', async (req, res) => {
     const token = generateToken(newUser)
     
     res.status(201).json({ message: 'Signed in successfully', token })
-    console.log(token)
+    console.log( token)
   } catch (err) { 
     console.error('Error registering user:', err);
     res.status(500).json({ error: 'Internal server error' })
