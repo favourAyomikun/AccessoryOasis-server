@@ -1,11 +1,23 @@
-const accessoryModel = require("../models/AccessorySchema");
 const express = require('express')
 const router = express.Router()
+const accessoryModel = require("../models/AccessorySchema");
+const accessorriesData = require('../data/AccessoryData');
 
-router.get('/accessories', async(req, res) => {
+router.post('/populate', async(req, res) => {
     try {
-        const accessories = await accessoryModel.find();
-        res.json(accessories)
+        const result = await accessoryModel.insertMany(accessorriesData)
+        console.log(result)
+        res.status(200).json(result)
+    } catch (err) {
+        res.status(500).send('Server error')
+    }
+})
+
+router.get('/', async(req, res) => {
+    try {
+        const accessorriesData = await accessoryModel.find();
+        res.status(200).json(accessorriesData)
+        console.log(accessorriesData)
     } catch (err) {
         res.status(500).json({ message: err.message})
     }

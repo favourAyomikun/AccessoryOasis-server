@@ -3,7 +3,7 @@ require('dotenv').config();
 const express = require('express')
 const cors = require('cors')
 const signinRoute = require('./routes/signinRoute')
-const authRoute = require('./routes/accessoryRoute')
+const accessoryRoute = require('./routes/accessoryRoute')
 
 const app = express()
 const port = 4000
@@ -25,7 +25,7 @@ db.on("error", function (err) {
 
 
 app.use('/api/auth', signinRoute);
-app.use('/api', authRoute);
+app.use('/api/accessories', accessoryRoute);
 
 
 

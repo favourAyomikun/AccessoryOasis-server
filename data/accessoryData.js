@@ -1,7 +1,3 @@
-require('dotenv').config();
-const mongoose = require("mongoose");
-const accessoryModel = require('../models/AccessorySchema');
-
 const accessorriesData = [
     {
         name: "Tote Bag",
@@ -61,14 +57,4 @@ const accessorriesData = [
     },
 ];
 
-mongoose.connect(process.env.MONGO_URI)
-    .then(() => {
-        return accessoryModel.insertMany(accessorriesData)
-    })
-    .then(() => {
-        console.log('Data inserted')
-        mongoose.connection.close()
-    })
-    .catch((err) => {
-        console.error(err)
-    })
+module.exports = accessorriesData;
