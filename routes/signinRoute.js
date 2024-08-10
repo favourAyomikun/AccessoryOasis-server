@@ -4,20 +4,23 @@ const jwt = require('jsonwebtoken')
 const signinModel = require('../models/SigninSchema')
 const router = express.Router()
 
-
+// route to signin authentication
 const generateToken = (user) => {
   return jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' })
  }
 
 router.post('/register', async (req, res) => {
+  // destructured email & password
   const { email, password } = req.body;
 
   try {
+    // check if the user's email exists in the database already
     const existingUser = await signinModel.findOne({ email })
     if(existingUser) {
       return res.status(400).json({ error: 'User already exists' })
     }
 
+    // hashed password to protect the password from been seen
     const hashedPassword = await argon2.hash(password, { type: argon2.argon2d });
 
     const newUser = new signinModel({ email,  password: hashedPassword})
