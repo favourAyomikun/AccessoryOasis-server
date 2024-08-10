@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// cretaed a schema for accessory data
 const accessorySchema = new mongoose.Schema(
     {
         name: { type: String, required: true },

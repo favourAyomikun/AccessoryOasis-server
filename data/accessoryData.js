@@ -1,3 +1,4 @@
+// storing data in an array and exporting it
 const accessorriesData = [
     {
         name: "Tote Bag",

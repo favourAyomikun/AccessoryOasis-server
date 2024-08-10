@@ -5,10 +5,12 @@ const signinModel = require('../models/SigninSchema')
 const router = express.Router()
 
 // route to signin authentication
+
 const generateToken = (user) => {
   return jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' })
- }
+}
 
+// using the post method to register users
 router.post('/register', async (req, res) => {
   // destructured email & password
   const { email, password } = req.body;
@@ -26,6 +28,7 @@ router.post('/register', async (req, res) => {
     const newUser = new signinModel({ email,  password: hashedPassword})
     await newUser.save();
 
+    // generate token for new users
     const token = generateToken(newUser)
     
     res.status(201).json({ message: 'Signed in successfully', token })

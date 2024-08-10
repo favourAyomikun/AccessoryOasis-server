@@ -15,7 +15,7 @@ app.use(cors());
 app.use(express.json());
 app.use('/images', express.static(path.join(__dirname, 'public/images')));
 
-
+// set up for mongoose connection
 const mongoose = require("mongoose");
 mongoose.connect(process.env.MONGO_URI);
 
