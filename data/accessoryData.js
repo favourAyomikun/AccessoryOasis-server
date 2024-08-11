@@ -4,7 +4,7 @@ const accessorriesData = [
         name: "Tote Bag",
         price: 79.99,
         category: "Bags",
-        image_url: "/images/tote-bag-1.png",
+        image_url: "/images/tote-bag-1.webp",
     },
     {
         name: "Crossbody Bag",
@@ -16,45 +16,45 @@ const accessorriesData = [
         name: "HandBag",
         price: 49.99,
         category: "Bags",
-        image_url: "/images/handbag-3.png",
+        image_url: "/images/handbag-3.jpg",
     },
 
     {
         name: "Skydiving Sunglasses",
         price: 59.99,
         category: "Sunglasses",
-        image_url: "/images/sunglasses-1.png",
+        image_url: "/images/sunglasses-1.jpg",
     },
     {
         name: "Vintage Sunglasses",
         price: 39.99,
         category: "Sunglasses",
-        image_url: "/images/vintage-sunglasses-2.png",
+        image_url: "/images/vintage-sunglasses-2.jpg",
     },
     {
         name: "Beach Sunglasses",
         price: 40.99,
         category: "Sunglasses",
-        image_url: "/images/sunglasses-3.png",
+        image_url: "/images/sunglasses-3.jpg",
     },
 
     {
-        name: "Leather Brown Wristwatch",
+        name: "Seikomod Watch",
         price: 90.99,
         category: "Watches",
-        image_url: "/images/brown-wristwatch.jpg",
+        image_url: "/images/seikomod-watch.jpg",
     },
     {
-        name: "Silver Pocket Watch",
+        name: "Jaeger-LeCoultre Watch",
         price: 150.99,
         category: "Watches",
-        image_url: "/images/silver-pocket_watch.png",
+        image_url: "/images/stainless- steel-watch.jpg",
     },
     {
-        name: "Pocket WatchClock",
+        name: "Rolex Datejust 41 Watch",
         price: 200.99,
         category: "Watches",
-        image_url: "/images/pocket-watch-clock.png",
+        image_url: "/images/rolex-watch.jpg",
     },
 ];
 
