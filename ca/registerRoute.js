@@ -1,11 +1,11 @@
+const argon2 = require("argon2");
 const express = require("express");
 const userModel = require("../models/UserSchema");
-const argon2d  = require("argon2");
 const router = express.Router();
 
 // route to register users
 router.post("/register", async (req, res) => {
-  // destructure user details from the request body
+  // destructure user details
   const { username, email, password } = req.body;
 
   try {
@@ -16,7 +16,9 @@ router.post("/register", async (req, res) => {
     }
 
     // hashed password with argon
-    const hashedPassword = await argon2d.hash(password);
+    const hashedPassword = await argon2.hash(password, {
+      type: argon2.argon2d,
+    });
 
     // create new user
     user = new userModel({
