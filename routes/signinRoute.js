@@ -11,7 +11,7 @@ const generateToken = (user) => {
 }
 
 // using the post method to register users
-router.post('/register', async (req, res) => {
+router.post('/login', async (req, res) => {
   // destructured email & password
   const { email, password } = req.body;
 

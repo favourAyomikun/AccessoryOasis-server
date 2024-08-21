@@ -3,6 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const signinRoute = require("./routes/signinRoute");
+const registerRoute = require("./routes/registerRoute");
 const accessoryRoute = require("./routes/accessoryRoute");
 const cartRoute = require('./routes/CartRoute')
 const path = require("path");
@@ -30,6 +31,7 @@ db.on("error", function (err) {
 });
 
 app.use("/api/auth", signinRoute);
+app.use('/api/auth', registerRoute)
 app.use("/api/accessories", accessoryRoute);
 app.use('/api', cartRoute)
 
