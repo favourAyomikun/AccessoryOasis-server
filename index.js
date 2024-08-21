@@ -4,7 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const signinRoute = require("./routes/signinRoute");
 const accessoryRoute = require("./routes/accessoryRoute");
-const cartRoute = require("./routes/cartRoute");
+const cartRoute = require('./routes/CartRoute')
 const path = require("path");
 
 const app = express();
