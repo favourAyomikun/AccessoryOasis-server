@@ -4,6 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const signinRoute = require("./routes/signinRoute");
 const accessoryRoute = require("./routes/accessoryRoute");
+const cartRoute = require("./routes/cartRoute");
 const path = require("path");
 
 const app = express();
@@ -30,6 +31,7 @@ db.on("error", function (err) {
 
 app.use("/api/auth", signinRoute);
 app.use("/api/accessories", accessoryRoute);
+app.use('/api', cartRoute)
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

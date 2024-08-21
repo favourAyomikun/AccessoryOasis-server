@@ -1,6 +1,6 @@
 const express = require('express');
 const cartModel = require("../models/CartSchema")
-const router = express.Router()
+const router = express.Router();
 
 // get user's cart
 router.get('/cart', async (req, res) => {
