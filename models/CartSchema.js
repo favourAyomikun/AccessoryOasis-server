@@ -12,10 +12,12 @@ const cartSchema = new mongoose.Schema({
       productId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Accessory",
+        required: true
       },
       quantity: {
         type: Number,
         required: true,
+        min: 1
       },
     },
   ],

@@ -26,6 +26,8 @@ router.post("/cart", async (req, res) => {
       cart = new cartModel({ userId, items: req.body.items });
       await cart.save();
     }
+
+    res.json({ message: 'Cart updated successfully', cart: cart.items })
   } catch (err) {
     res.status(500).json({ error: "Failed to update cart" });
   }
