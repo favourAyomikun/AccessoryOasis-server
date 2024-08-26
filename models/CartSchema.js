@@ -6,14 +6,14 @@ const cartSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     required: true,
-      // The validator function checks if a user with the given ObjectId exists in the User collection.
+    // The validator function checks if a user with the given ObjectId exists in the User collection.
     validate: {
       validator: async function (value) {
-        const userExists = await mongoose.model('User').exists({ _id: value })
+        const userExists = await mongoose.model("User").exists({ _id: value });
         return userExists;
       },
-      message: 'User not found'
-    }
+      message: "User not found",
+    },
   },
   items: [
     {
@@ -27,15 +27,15 @@ const cartSchema = new mongoose.Schema({
             const accessoryExists = await mongoose
               .model("AccessoryData")
               .exists({ _id: value });
-            return accessoryExists; 
+            return accessoryExists;
           },
-          message: (props) => `Accessory with ID ${props.value} not found`, 
+          message: (props) => `Accessory with ID ${props.value} not found`,
         },
       },
       quantity: {
         type: Number,
         required: true,
-        default: 1
+        default: 1,
       },
     },
   ],
