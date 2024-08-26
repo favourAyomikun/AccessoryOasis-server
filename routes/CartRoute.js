@@ -14,24 +14,40 @@ router.get("/cart", async (req, res) => {
 });
 
 // update user's cart
-router.post("/cart", async (req, res) => {
-  try {
-    const userId = req.user._id;
-    let cart = await cartModel.findOne({ userId });
+router.post('/cart', async (req, res) => {
+  const { userId, itemId, quantity } = req.body;
+  
+    try {
+      // find the cart for the user
+      let cart = await cartModel.findOne({ userId })
+      
+      if (cart) {
+        // if cart exists, add item to the items array
+        const itemIndex = cart.items.findIndex(item => item.itemId == itemId)
 
-    if (cart) {
-      cart.items = req.body.items;
+        if (itemIndex > -1) {
+          // if item exists in the cart, update the quantity
+          cart.items[itemIndex].quantity += quantity
+        } else {
+          // if item doesn't exist, add it
+          cart.items.push({ itemId, quantity })
+        }
+      } else {
+        // if cart doesn't exist, create a new one
+        cart = new cartModel({
+          userId,
+          items: [{ itemId, quantity }]
+        }) 
+      }
+  
       await cart.save();
-    } else {
-      cart = new cartModel({ userId, items: req.body.items });
-      await cart.save();
+      res.status(200).json({ message: 'Item added to cart', cart });
+    } catch (error) {
+      console.error('Error saving cart item:', error);
+      res.status(500).json({ message: 'Internal Server Error' });
     }
-
-    res.json({ message: 'Cart updated successfully', cart: cart.items })
-  } catch (err) {
-    res.status(500).json({ error: "Failed to update cart" });
-  }
-});
+  });
+  
 
 // remove item from user's cart
 router.delete("/cart/:itemId", async (req, res) => {
