@@ -23,7 +23,7 @@ router.get("/cart", async (req, res) => {
 });
 
 // update user's cart
-router.post("/cart", async (req, res) => {
+router.post("/saveCart", async (req, res) => {
   const { userId, itemId, quantity } = req.body;
 
   if (!userId) {
