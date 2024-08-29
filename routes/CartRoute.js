@@ -3,7 +3,7 @@ const cartModel = require("../models/CartSchema");
 const router = express.Router();
 
 // get user's cart
-router.get("/cart", async (req, res) => {
+router.get("/getCart", async (req, res) => {
   const userId = req.query.userId || req.body.userId;
 
   if (!userId) {
@@ -23,42 +23,42 @@ router.get("/cart", async (req, res) => {
 });
 
 // update user's cart
-  router.post("/saveCart", async (req, res) => {
-    const { userId, items } = req.body;
+router.post("/saveCart", async (req, res) => {
+  const { userId, items } = req.body;
 
-    if (!userId || !items || items.length === 0) {
-      return res.status(400).json({ error: "User ID and items are required." });
+  if (!userId || !items || items.length === 0) {
+    return res.status(400).json({ error: "User ID and items are required." });
+  }
+
+  try {
+    // find the cart for the user
+    let cart = await cartModel.findOne({ userId });
+
+    if (cart) {
+      // Iterate over items to add or update them in the cart
+      items.forEach(({ itemId, quantity }) => {
+        const itemIndex = cart.items.findIndex((item) => item.itemId == itemId)
+        if (itemIndex >- 1) {
+          cart.items[itemIndex].quantity += quantity;
+        } else {
+          cart.items.push({ itemId, quantity })
+        }
+      })
+    } else {
+      // if cart doesn't exist, create a new one
+      cart = new cartModel({
+        userId,
+        items: items.map(({ itemId, quantity }) => ({ itemId, quantity })),
+      });
     }
 
-    try {
-      // find the cart for the user
-      let cart = await cartModel.findOne({ userId });
-
-      if (cart) {
-        // Iterate over items to add or update them in the cart
-        items.forEach(({ itemId, quantity }) => {
-          const itemIndex = cart.items.findIndex((item) => item.itemId == itemId)
-          if (itemIndex >- 1) {
-            cart.items[itemIndex].quantity += quantity;
-          } else {
-            cart.items.push({ itemId, quantity })
-          }
-        })
-      } else {
-        // if cart doesn't exist, create a new one
-        cart = new cartModel({
-          userId,
-          items: items.map(({ itemId, quantity }) => ({ itemId, quantity })),
-        });
-      }
-
-      await cart.save();
-      res.status(200).json({ message: "Item added to cart", cart });
-    } catch (error) {
-      console.error("Error saving cart item:", error);
-      res.status(500).json({ message: "Internal Server Error" });
-    }
-  });
+    await cart.save();
+    res.status(200).json({ message: "Item added to cart", cart });
+  } catch (error) {
+    console.error("Error saving cart item:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
 
 // remove item from user's cart
 router.delete("/cart/:itemId", async (req, res) => {
