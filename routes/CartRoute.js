@@ -3,7 +3,7 @@ const cartModel = require("../models/CartSchema");
 const router = express.Router();
 
 // get user's cart
-router.get("/getCart", async (req, res) => {
+router.get("/getCartItems", async (req, res) => {
   const userId = req.query.userId || req.body.userId;
 
   if (!userId) {
@@ -23,7 +23,7 @@ router.get("/getCart", async (req, res) => {
 });
 
 // update user's cart
-router.post("/saveCart", async (req, res) => {
+router.post("/saveCartItems", async (req, res) => {
   const { userId, items } = req.body;
 
   if (!userId || !items || items.length === 0) {
@@ -61,7 +61,7 @@ router.post("/saveCart", async (req, res) => {
 });
 
 // remove item from user's cart
-router.delete("/cart/:itemId", async (req, res) => {
+router.delete("/deleteCartItem/:itemId", async (req, res) => {
   const userId = req.query.userId || req.body.userId;
 
   // Ensure the user is authenticated
