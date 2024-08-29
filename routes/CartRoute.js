@@ -61,7 +61,7 @@ router.post("/saveCartItems", async (req, res) => {
 });
 
 // remove item from user's cart
-router.delete("/deleteCartItem/:itemId", async (req, res) => {
+router.delete("/removeCartItem/:itemId", async (req, res) => {
   const userId = req.query.userId || req.body.userId;
 
   // Ensure the user is authenticated
