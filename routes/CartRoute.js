@@ -21,7 +21,7 @@ router.get("/getCartItems", async (req, res) => {
     // If a cart is found, return the items and userId, otherwise return an empty array
     res.json({
       userId: cart.userId,
-      items: cart.items
+      items: cart.items || []
     });
   } catch (err) {
     console.error("Error fetching cart:", err);
