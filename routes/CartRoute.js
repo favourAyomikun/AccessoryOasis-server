@@ -12,10 +12,17 @@ router.get("/getCartItems", async (req, res) => {
 
   try {
     // Find the cart associated with the userId
-    const cart = await cartModel.findOne({ userId });
+    const cart = await cartModel.findOne({ userId }).populate('items.itemId', 'name price image_url');
 
-    // If a cart is found, return the items, otherwise return an empty array
-    res.json(cart ? cart.items : []);
+     if (!cart) {
+      return res.status(404).json({ error: "Cart not found." });
+    }
+
+    // If a cart is found, return the items and userId, otherwise return an empty array
+    res.json({
+      userId: cart.userId,
+      items: cart.items
+    });
   } catch (err) {
     console.error("Error fetching cart:", err);
     res.status(500).json({ error: "Failed to fetch cart" });
@@ -91,7 +98,7 @@ router.delete("/removeCartItem/:itemId", async (req, res) => {
 
         await cart.save();
         res.json({
-          message: "Item quantity updated successfully",
+          message: "Item deleted successfully",
           cart: cart.items,
         });
       } else {
