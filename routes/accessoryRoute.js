@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const accessoryModel = require("../models/AccessorySchema");
-const accessorriesData = require('../data/AccessoryData');
+const accessorriesData = require('../data/accessoryData')
 
 // route to store the data in the database
 
