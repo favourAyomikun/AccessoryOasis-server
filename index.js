@@ -35,7 +35,7 @@ app.use("/api/auth", signinRoute);
 app.use('/api/auth', registerRoute)
 app.use("/api/accessories", accessoryRoute);
 app.use('/api', cartRoute)
-app.use('/api/', userProfileRoute)
+app.use('/api', userProfileRoute)
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
