@@ -9,7 +9,6 @@ router.get("/getUserProfile/:userId", async (req, res) => {
         return res.status(404).json({ message: "User not found" });
       }
       res.status(200).json(user);
-      console.log(user)
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Server error");
