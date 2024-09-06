@@ -6,6 +6,7 @@ const signinRoute = require("./routes/signinRoute");
 const registerRoute = require("./routes/registerRoute");
 const accessoryRoute = require("./routes/accessoryRoute");
 const cartRoute = require('./routes/CartRoute')
+const userProfileRoute = require('./routes/userProfileRoute')
 const path = require("path");
 
 const app = express();
@@ -34,6 +35,7 @@ app.use("/api/auth", signinRoute);
 app.use('/api/auth', registerRoute)
 app.use("/api/accessories", accessoryRoute);
 app.use('/api', cartRoute)
+app.use('/api/', userProfileRoute)
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
