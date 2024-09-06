@@ -1,4 +1,5 @@
 const express = require("express");
+const userModel = require("../models/UserSchema");
 const router = express.Router();
 
 router.get("/getUserProfile/:userId", async (req, res) => {
