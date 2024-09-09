@@ -20,7 +20,7 @@ router.post("/login", async (req, res) => {
     // check if the user's email exists in the database already
     const existingUser = await userModel.findOne({ email });
     if (!existingUser) {
-      return res.status(400).json({ message: "User already exists" });
+      return res.status(400).json({ message: "User not found in the database" });
     }
 
     // verify the provided password with the hashed password in the database
