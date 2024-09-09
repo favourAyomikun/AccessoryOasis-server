@@ -31,6 +31,7 @@ router.post("/send-otp", async (req, res) => {
     subject: "Your OTP Code",
     text: `Your OTP code is ${otp}. It is valid for 5 minutes.`,
   };
+  console.log(mailOptions)
 
   transporter.sendMail(mailOptions, (err, info) => {
     if (err) {
@@ -48,6 +49,7 @@ router.post("/verify-otp", async (req, res) => {
 
   // find the OTP in the database
   const record = await otpModel.findOne({ email, otp: hashedOtp });
+  console.log(record)
 
   if (!record) {
     return res.status(400).json({ message: "Invalid or expired OTP" });
