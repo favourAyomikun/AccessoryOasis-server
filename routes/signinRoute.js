@@ -31,11 +31,9 @@ router.post("/login", async (req, res) => {
 
     // Generate JWT token for the authenticated user
     const token = generateToken(existingUser);
-    console.log("Generated JWT Token:", token);
 
     // Decode the token to check the payload directly on the backend
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
-    console.log("Decoded Token Payload:", decodedToken);
     
     // send response with token, user data and success message
     res.status(200).json({
@@ -45,9 +43,9 @@ router.post("/login", async (req, res) => {
         email: existingUser.email,
       },
       token,
+      decodedToken,
       message: "Login successful",
     });
-    console.log(token);
   } catch (err) {
     console.error("Error during login:", err.message);
     res.status(500).json({ error: "Internal server error" });
