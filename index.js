@@ -6,6 +6,7 @@ const signinRoute = require("./routes/signinRoute");
 const registerRoute = require("./routes/registerRoute");
 const accessoryRoute = require("./routes/accessoryRoute");
 const cartRoute = require('./routes/CartRoute')
+const verifyEmailRoute = require('./routes/verifyEmailRoute')
 const userProfileRoute = require('./routes/userProfileRoute')
 const path = require("path");
 
@@ -33,6 +34,7 @@ db.on("error", function (err) {
 
 app.use("/api/auth", signinRoute);
 app.use('/api/auth', registerRoute)
+app.use('/api/auth', verifyEmailRoute)
 app.use("/api/accessories", accessoryRoute);
 app.use('/api', cartRoute)
 app.use('/api', userProfileRoute)
